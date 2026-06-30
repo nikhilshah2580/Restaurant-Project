@@ -1,40 +1,217 @@
-import React from 'react'
-import { NavLink } from 'react-router'
+import React, { useState } from "react";
+import { NavLink } from "react-router";
+import {
+  FaFacebookF,
+  FaTiktok,
+  FaInstagram,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 
 const Navbar = () => {
-  const activeClass = 'text-red-600 font-semibold'
+  const [open, setOpen] = useState(false);
+  const activeClass = "text-orange-600 font-semibold";
+  const defaultClass =
+    "text-slate-600 hover:text-orange-600 transition-colors duration-200";
 
   return (
-    <header className="bg-white shadow-sm">
-      <nav className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <img src="/logo.png" alt="logo" className="h-10" />
-          <span className="text-xl font-bold">Momo</span>
+    <header className="bg-white shadow-sm sticky top-0 z-30">
+      <nav className="max-w-7xl mx-auto px-4 py-4 md:px-6 md:py-5">
+        <div className="flex items-center justify-between gap-4">
+          <NavLink to="/" className="flex items-center gap-3">
+            <img
+              src="/logo.png"
+              alt="logo"
+              className="h-10 w-10 object-contain"
+            />
+            <span className="text-2xl font-bold text-[#0F7F6C]">momos</span>
+          </NavLink>
+
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:border-slate-300 hover:text-orange-600 md:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+          >
+            {open ? <FaTimes size={18} /> : <FaBars size={18} />}
+          </button>
+
+          <div className="hidden items-center gap-6 md:flex md:flex-1 md:justify-center md:text-sm md:font-semibold md:text-slate-500">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? activeClass : defaultClass
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive ? activeClass : defaultClass
+              }
+            >
+              About Us
+            </NavLink>
+            <NavLink
+              to="/menu"
+              className={({ isActive }) =>
+                isActive ? activeClass : defaultClass
+              }
+            >
+              Our Menu
+            </NavLink>
+            <NavLink
+              to="/service"
+              className={({ isActive }) =>
+                isActive ? activeClass : defaultClass
+              }
+            >
+              Our Services
+            </NavLink>
+            <NavLink
+              to="/allergy"
+              className={({ isActive }) =>
+                isActive ? activeClass : defaultClass
+              }
+            >
+              Allergy Advice
+            </NavLink>
+          </div>
+
+          <div className="hidden items-center gap-3 md:flex">
+            <div className="flex items-center gap-3 text-slate-500">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+                className="hover:text-[#1877F2]"
+              >
+                <FaFacebookF size={18} />
+              </a>
+              <a
+                href="https://tiktok.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="TikTok"
+                className="hover:text-black"
+              >
+                <FaTiktok size={18} />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                className="hover:text-pink-500"
+              >
+                <FaInstagram size={18} />
+              </a>
+            </div>
+
+            <NavLink
+              to="/contact"
+              className="rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-orange-200/50 transition-colors duration-200 hover:bg-orange-700"
+            >
+              Contact Us
+            </NavLink>
+          </div>
         </div>
 
-        <div className="flex items-center gap-6">
-          <NavLink to="/" className={({ isActive }) => isActive ? activeClass : 'text-gray-700 hover:text-red-600'}>
-            Home
-          </NavLink>
-          <NavLink to="/about" className={({ isActive }) => isActive ? activeClass : 'text-gray-700 hover:text-red-600'}>
-            About
-          </NavLink>
-          <NavLink to="/contact" className={({ isActive }) => isActive ? activeClass : 'text-gray-700 hover:text-red-600'}>
-            Contact
-          </NavLink>
-          <NavLink to="/menu" className={({ isActive }) => isActive ? activeClass : 'text-gray-700 hover:text-red-600'}>
-            Menu
-          </NavLink>
-          <NavLink to="/service" className={({ isActive }) => isActive ? activeClass : 'text-gray-700 hover:text-red-600'}>
-            Service
-          </NavLink>
-          <NavLink to="/allergy" className={({ isActive }) => isActive ? activeClass : 'text-gray-700 hover:text-red-600'}>
-            Allergy
-          </NavLink>
-        </div>
+        {open && (
+          <div className="mt-4 rounded-3xl border border-slate-200 bg-white p-4 shadow-lg md:hidden">
+            <div className="flex flex-col gap-4 text-sm font-semibold text-slate-700">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? activeClass : defaultClass
+                }
+                onClick={() => setOpen(false)}
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive ? activeClass : defaultClass
+                }
+                onClick={() => setOpen(false)}
+              >
+                About Us
+              </NavLink>
+              <NavLink
+                to="/menu"
+                className={({ isActive }) =>
+                  isActive ? activeClass : defaultClass
+                }
+                onClick={() => setOpen(false)}
+              >
+                Our Menu
+              </NavLink>
+              <NavLink
+                to="/service"
+                className={({ isActive }) =>
+                  isActive ? activeClass : defaultClass
+                }
+                onClick={() => setOpen(false)}
+              >
+                Our Services
+              </NavLink>
+              <NavLink
+                to="/allergy"
+                className={({ isActive }) =>
+                  isActive ? activeClass : defaultClass
+                }
+                onClick={() => setOpen(false)}
+              >
+                Allergy Advice
+              </NavLink>
+            </div>
+
+            <div className="mt-5 flex items-center justify-between gap-3 border-t border-slate-200 pt-4">
+              <div className="flex items-center gap-3 text-slate-500">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Facebook"
+                  className="hover:text-[#1877F2]"
+                >
+                  <FaFacebookF size={18} />
+                </a>
+                <a
+                  href="https://tiktok.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="TikTok"
+                  className="hover:text-black"
+                >
+                  <FaTiktok size={18} />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram"
+                  className="hover:text-pink-500"
+                >
+                  <FaInstagram size={18} />
+                </a>
+              </div>
+              <NavLink
+                to="/contact"
+                className="rounded-full bg-orange-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-orange-200/50 transition-colors duration-200 hover:bg-orange-700"
+                onClick={() => setOpen(false)}
+              >
+                Contact Us
+              </NavLink>
+            </div>
+          </div>
+        )}
       </nav>
     </header>
-  )
-}
+  );
+};
 
 export default Navbar;
