@@ -58,40 +58,44 @@ const team = [
 const About = () => {
   return (
     <main className="bg-white">
-      <section className="mx-auto grid min-h-[680px] max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:px-8">
-        <div>
-          <p className="font-serif text-5xl italic text-[#0F7F6C]">About Us</p>
-          <p className="mt-16 text-sm font-bold uppercase tracking-[0.35em] text-slate-400">
+      <section className="mx-auto grid min-h-[680px] max-w-7xl items-center gap-12 overflow-hidden px-6 py-16 sm:py-20 lg:grid-cols-2 lg:px-8">
+        <div className="text-center lg:text-left">
+          <p className="font-serif text-4xl italic text-[#0F7F6C] sm:text-5xl">
+            About Us
+          </p>
+          <p className="mt-10 text-xs font-bold uppercase tracking-[0.25em] text-slate-400 sm:mt-16 sm:text-sm sm:tracking-[0.35em]">
             We pride ourself on
           </p>
-          <h1 className="mt-5 max-w-xl text-4xl font-bold leading-tight text-[#101828] md:text-5xl">
+          <h1 className="mx-auto mt-5 max-w-xl text-3xl font-bold leading-tight text-[#101828] sm:text-4xl md:text-5xl lg:mx-0">
             <span className="text-[#F26419]">Our authentic momo recipes</span>{" "}
             passed down through generations
           </h1>
         </div>
 
-        <div className="relative flex justify-center">
-          <div className="absolute right-4 top-12 h-88 w-88 rounded-full bg-[#0F7F6C]" />
+        <div className="relative flex min-h-[360px] justify-center sm:min-h-[460px]">
+          <div className="absolute top-12 h-72 w-72 rounded-full bg-[#0F7F6C] sm:h-88 sm:w-88 lg:right-4" />
           <div className="absolute left-8 top-28 hidden h-52 w-52 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] [background-size:18px_18px] md:block" />
           <div className="absolute bottom-0 right-0 hidden h-52 w-52 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] [background-size:18px_18px] md:block" />
           <img
             src={aboutwomen}
             alt="Chef holding cooking spoon"
-            className="relative z-10 h-[400px] w-[250px]  object-cover  left-25 rounded-full"
+            className="relative z-10 h-[340px] w-[230px] rounded-full object-cover object-top sm:h-[430px] sm:w-[300px] lg:translate-x-10"
           />
         </div>
       </section>
 
-      <section className="relative min-h-[560px] overflow-hidden">
+      <section className="relative min-h-[460px] overflow-hidden sm:min-h-[560px]">
         <img
           src={aboutveg}
           alt="Chef preparing momos"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-slate-950/55" />
-        <div className="relative mx-auto flex min-h-[560px] max-w-7xl flex-col justify-center px-6 text-white lg:px-8">
-          <h2 className="text-5xl font-bold">Process behind the making</h2>
-          <p className="mt-3 text-lg text-white/85">
+        <div className="relative mx-auto flex min-h-[460px] max-w-7xl flex-col justify-center px-6 text-white sm:min-h-[560px] lg:px-8">
+          <h2 className="text-3xl font-bold sm:text-5xl">
+            Process behind the making
+          </h2>
+          <p className="mt-3 max-w-2xl text-base text-white/85 sm:text-lg">
             See how we make momos that you like from only the best ingredients
           </p>
           <button className="mt-9 inline-flex w-fit items-center gap-3 rounded-full bg-[#0F7F6C] px-7 py-4 text-sm font-semibold transition hover:bg-[#0d6c56]">
@@ -103,35 +107,35 @@ const About = () => {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl space-y-28 px-6 py-28 lg:px-8">
+      <section className="mx-auto max-w-7xl space-y-20 px-6 py-20 sm:space-y-28 sm:py-28 lg:px-8">
         {storyBlocks.map((block, index) => (
           <div
             key={index}
-            className={`grid items-center gap-16 lg:grid-cols-2 ${
+            className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${
               block.reverse ? "lg:[&>*:first-child]:order-2" : ""
             }`}
           >
-            <div>
-              <h2 className="max-w-md text-4xl font-bold leading-tight text-[#101828]">
+            <div className="text-center lg:text-left">
+              <h2 className="mx-auto max-w-md text-3xl font-bold leading-tight text-[#101828] sm:text-4xl lg:mx-0">
                 {block.title}
               </h2>
-              <p className="mt-6 max-w-md leading-8 text-slate-500">
+              <p className="mx-auto mt-6 max-w-md leading-8 text-slate-500 lg:mx-0">
                 Lorem ipsum dolor sit amet consectetur. Lectus faucibus lorem ac
                 adipiscing. Leo odio tincidunt ipsum magna lacus viverra
                 tincidunt. Viverra aliquet sollicitudin eget dapibus.
               </p>
             </div>
-            <div className="relative">
+            <div className="relative pb-12">
               <img
                 src={block.image}
                 alt="Momo preparation"
-                className="h-[360px] w-full rounded-md object-cover"
+                className="h-[260px] w-full rounded-md object-cover sm:h-[360px]"
               />
               <img
                 src={block.plate}
                 alt="Momo plate"
-                className={`absolute -bottom-12 w-56 ${
-                  block.reverse ? "-right-4" : "-left-4"
+                className={`absolute -bottom-3 w-36 sm:-bottom-8 sm:w-56 ${
+                  block.reverse ? "right-2 sm:-right-4" : "left-2 sm:-left-4"
                 }`}
               />
             </div>
@@ -139,16 +143,16 @@ const About = () => {
         ))}
       </section>
 
-      <section className="grid min-h-[560px] bg-slate-900 lg:grid-cols-2">
+      <section className="grid bg-slate-900 lg:min-h-[560px] lg:grid-cols-2">
         <div className="relative overflow-hidden">
           <img
             src={aboutveg}
             alt="Restaurant interior"
             className="absolute inset-0 h-full w-full object-cover opacity-35 blur-sm"
           />
-          <div className="relative flex h-full flex-col justify-center px-6 py-20 text-white lg:px-32">
+          <div className="relative flex h-full flex-col justify-center px-6 py-16 text-white sm:py-20 lg:px-32">
             <p className="text-7xl font-bold leading-none">“</p>
-            <p className="mt-3 max-w-xl text-lg leading-9 text-white/90">
+            <p className="mt-3 max-w-xl text-base leading-8 text-white/90 sm:text-lg sm:leading-9">
               Momo is not just about sustenance, it's about bringing people
               together and creating memories. At our restaurant, we strive to
               create a warm and inviting atmosphere where our guests can enjoy
@@ -169,13 +173,13 @@ const About = () => {
         <img
           src={aboutwomen2}
           alt="Company leader"
-          className="h-full min-h-[560px] w-full object-cover object-top"
+          className="h-[420px] w-full object-cover object-top sm:h-[560px] lg:h-full lg:min-h-[560px]"
         />
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
         <div className="text-center">
-          <h2 className="text-5xl font-bold text-[#101828]">
+          <h2 className="text-4xl font-bold text-[#101828] sm:text-5xl">
             Meet The <span className="text-[#F26419]">Team</span>
           </h2>
           <p className="mt-4 text-lg font-bold text-[#0F7F6C]">
@@ -183,11 +187,11 @@ const About = () => {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:mt-14 md:grid-cols-3">
           {team.map((member) => (
             <article
               key={member.title + member.image}
-              className="relative h-[420px] overflow-hidden rounded-md"
+              className="relative h-[360px] overflow-hidden rounded-md sm:h-[420px]"
             >
               <img
                 src={member.image}
