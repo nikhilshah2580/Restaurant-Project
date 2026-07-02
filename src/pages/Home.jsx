@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import momo from "../assets/momo.png";
 import round from "../assets/round.png";
 import man from "../assets/man.png";
-import buffmomo from "../assets/buffmomo.png";
 import waiter from "../assets/waiter.jpg";
 import women from "../assets/women.png";
 import Footer from "../components/Footer";
@@ -37,6 +38,67 @@ const services = [
 ];
 
 const Home = () => {
+  const [popularRecipes, setPopularRecipes] = useState([]);
+  const [loadingRecipes, setLoadingRecipes] = useState(true);
+  const [selectedCuisine, setSelectedCuisine] = useState("All");
+  const [recipeIndex, setRecipeIndex] = useState(0);
+
+  const cuisines = [
+    "All",
+    ...new Set(popularRecipes.map((recipe) => recipe.cuisine)),
+  ].slice(0, 4);
+
+  const filteredRecipes =
+    selectedCuisine === "All"
+      ? popularRecipes
+      : popularRecipes.filter((recipe) => recipe.cuisine === selectedCuisine);
+
+  const visibleRecipes = filteredRecipes.length
+    ? Array.from({ length: Math.min(3, filteredRecipes.length) }, (_, index) => {
+        const currentIndex = (recipeIndex + index) % filteredRecipes.length;
+        return filteredRecipes[currentIndex];
+      })
+    : [];
+
+  const handlePrevRecipe = () => {
+    setRecipeIndex((currentIndex) =>
+      currentIndex === 0 ? Math.max(filteredRecipes.length - 1, 0) : currentIndex - 1,
+    );
+  };
+
+  const handleNextRecipe = () => {
+    setRecipeIndex((currentIndex) =>
+      filteredRecipes.length ? (currentIndex + 1) % filteredRecipes.length : 0,
+    );
+  };
+
+  const handleCuisineChange = (cuisine) => {
+    setSelectedCuisine(cuisine);
+    setRecipeIndex(0);
+  };
+
+  useEffect(() => {
+    const getPopularRecipes = async () => {
+      try {
+        const resp = await axios.get("https://dummyjson.com/recipes?limit=12");
+        const recipes = resp.data.recipes.map((recipe) => ({
+          id: recipe.id,
+          name: recipe.name,
+          price: `Rs ${recipe.caloriesPerServing}`,
+          image: recipe.image,
+          cuisine: recipe.cuisine,
+        }));
+        setPopularRecipes(recipes);
+      } catch (error) {
+        console.log("Error fetching recipes:", error);
+      } finally {
+        setLoadingRecipes(false);
+      }
+    };
+
+    getPopularRecipes();
+  }, []);
+
   return (
     <main className="bg-white">
       <section className="relative min-h-screen overflow-hidden bg-white">
@@ -141,36 +203,70 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="mt-10 flex justify-center gap-4">
-          <button className="rounded-full border-2 border-black px-8 py-2 font-medium">
-            Buff
-          </button>
-          <button className="rounded-full border border-gray-300 px-8 py-2 font-medium hover:border-[#0F7F6C]">
-            Chicken
-          </button>
-          <button className="rounded-full border border-gray-300 px-8 py-2 font-medium hover:border-[#0F7F6C]">
-            Veg
-          </button>
+        <div className="mt-10 flex justify-start gap-4 overflow-x-auto pb-2 sm:justify-center">
+          {cuisines.map((cuisine) => (
+            <button
+              key={cuisine}
+              type="button"
+              onClick={() => handleCuisineChange(cuisine)}
+              className={`shrink-0 rounded-full px-8 py-2 font-medium transition ${
+                selectedCuisine === cuisine
+                  ? "border-2 border-black text-slate-950"
+                  : "border border-gray-300 text-slate-600 hover:border-[#0F7F6C]"
+              }`}
+            >
+              {cuisine}
+            </button>
+          ))}
         </div>
 
-        <div className="mt-16 grid grid-cols-[auto_1fr_auto] items-center gap-4">
-          <button className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 bg-white transition hover:bg-[#0F7F6C] hover:text-white">
+        <div className="mt-16 grid grid-cols-[auto_1fr_auto] items-center gap-3 sm:gap-4">
+          <button
+            type="button"
+            onClick={handlePrevRecipe}
+            disabled={filteredRecipes.length < 2}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-white transition hover:bg-[#0F7F6C] hover:text-white disabled:cursor-not-allowed disabled:opacity-40 sm:h-12 sm:w-12"
+          >
             <IoArrowBackOutline size={20} />
           </button>
-          <div className="grid gap-8 md:grid-cols-3">
-            {[
-              ["Buff Momo", "Rs 150"],
-              ["Buff Fry Momo", "Rs 180"],
-              ["Buff C. Momo", "Rs 200"],
-            ].map(([name, price]) => (
-              <div key={name} className="text-center">
-                <img src={buffmomo} alt={name} className="mx-auto w-52" />
-                <h3 className="mt-4 text-xl font-semibold">{name}</h3>
-                <p className="text-2xl font-bold text-[#F26419]">{price}</p>
+          <div className="flex gap-5 overflow-x-auto pb-3 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0">
+            {loadingRecipes
+              ? Array.from({ length: 3 }).map((_, index) => (
+                  <div key={index} className="min-w-52 text-center md:min-w-0">
+                    <div className="mx-auto h-52 w-52 animate-pulse rounded-full bg-slate-100" />
+                    <div className="mx-auto mt-4 h-6 w-36 animate-pulse rounded bg-slate-100" />
+                    <div className="mx-auto mt-3 h-7 w-20 animate-pulse rounded bg-slate-100" />
+                  </div>
+                ))
+              : visibleRecipes.map((recipe) => (
+                  <div key={recipe.id} className="min-w-52 text-center md:min-w-0">
+                    <img
+                      src={recipe.image}
+                      alt={recipe.name}
+                      className="mx-auto h-52 w-52 rounded-full object-cover"
+                    />
+                    <h3 className="mt-4 text-xl font-semibold">
+                      {recipe.name}
+                    </h3>
+                    <p className="text-2xl font-bold text-[#F26419]">
+                      {recipe.price}
+                    </p>
+                  </div>
+                ))}
+            {!loadingRecipes && filteredRecipes.length === 0 && (
+              <div className="text-center md:col-span-3">
+                <p className="font-medium text-slate-500">
+                  Recipes are not available right now.
+                </p>
               </div>
-            ))}
+            )}
           </div>
-          <button className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-300 bg-white transition hover:bg-[#0F7F6C] hover:text-white">
+          <button
+            type="button"
+            onClick={handleNextRecipe}
+            disabled={filteredRecipes.length < 2}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-white transition hover:bg-[#0F7F6C] hover:text-white disabled:cursor-not-allowed disabled:opacity-40 sm:h-12 sm:w-12"
+          >
             <IoArrowForwardOutline size={20} />
           </button>
         </div>
