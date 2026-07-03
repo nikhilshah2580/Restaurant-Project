@@ -1,15 +1,30 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import axios from "axios";
-import { FaMobileAlt } from "react-icons/fa";
+import { FaMobileAlt, FaShoppingCart } from "react-icons/fa";
 import { GiHotMeal } from "react-icons/gi";
 import Footer from "../components/Footer";
+import { useCart } from "../context/useCart";
 
 const getPrice = (recipe) => `Rs ${recipe.caloriesPerServing}`;
 const getDescription = (recipe) => recipe.ingredients.slice(0, 4).join(", ");
 
 const MenuSection = ({ title, recipes, loading }) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (recipe) => {
+    addToCart({
+      id: recipe.id,
+      name: recipe.name,
+      image: recipe.image,
+      price: recipe.caloriesPerServing,
+      cuisine: recipe.cuisine,
+      quantity: 1,
+    });
+  };
+
   return (
-    <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-10">
+    <section className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8 sm:py-20 lg:px-10 xl:px-14">
       <div className="mb-12 grid grid-cols-[1fr_auto_1fr] items-center gap-4 sm:mb-16 sm:gap-7">
         <div className="h-px bg-gradient-to-r from-transparent via-[#0F7F6C] to-[#0F7F6C]" />
         <h2 className="shrink-0 text-center text-xl font-black uppercase tracking-wide text-[#111827] sm:text-3xl lg:text-4xl">
@@ -19,14 +34,14 @@ const MenuSection = ({ title, recipes, loading }) => {
         <div className="h-px bg-gradient-to-r from-[#0F7F6C] via-[#0F7F6C] to-transparent" />
       </div>
 
-      <div className="grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-10">
+      <div className="grid grid-cols-1 gap-y-12 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:gap-x-10">
         {loading
           ? Array.from({ length: 8 }).map((_, index) => (
               <div
                 key={index}
                 className="rounded-lg border border-slate-100 bg-white p-5 shadow-sm"
               >
-                <div className="h-60 animate-pulse rounded-lg bg-slate-100" />
+                <div className="h-72 animate-pulse rounded-lg bg-slate-100" />
                 <div className="mt-6 h-6 animate-pulse rounded bg-slate-100" />
                 <div className="mt-4 h-8 w-24 animate-pulse rounded bg-slate-100" />
                 <div className="mt-6 h-16 animate-pulse rounded bg-slate-100" />
@@ -35,20 +50,26 @@ const MenuSection = ({ title, recipes, loading }) => {
           : recipes.map((recipe) => (
               <article
                 key={recipe.id}
-                className="group flex min-h-[470px] flex-col overflow-hidden rounded-lg border border-slate-100 bg-white shadow-sm shadow-slate-200/70 transition duration-200 hover:-translate-y-1 hover:border-[#0F7F6C]/20 hover:shadow-xl hover:shadow-slate-200"
+                className="group flex min-h-[520px] flex-col overflow-hidden rounded-lg border border-slate-100 bg-white shadow-sm shadow-slate-200/70 transition duration-200 hover:-translate-y-1 hover:border-[#0F7F6C]/20 hover:shadow-xl hover:shadow-slate-200"
               >
-                <div className="flex h-64 items-center justify-center bg-gradient-to-b from-slate-50 to-white p-5">
+                <Link
+                  to={`/product/${recipe.id}`}
+                  className="flex h-76 items-center justify-center bg-gradient-to-b from-slate-50 to-white p-5"
+                >
                   <img
                     src={recipe.image}
                     alt={recipe.name}
                     className="h-full w-full rounded-lg object-cover shadow-[0_18px_40px_rgba(15,23,42,0.12)] transition duration-300 group-hover:scale-105"
                   />
-                </div>
+                </Link>
                 <div className="flex flex-1 flex-col p-6">
                   <div className="flex items-start justify-between gap-5">
-                    <h3 className="text-lg font-black leading-snug text-[#111827]">
+                    <Link
+                      to={`/product/${recipe.id}`}
+                      className="text-lg font-black leading-snug text-[#111827] transition hover:text-[#0F7F6C]"
+                    >
                       {recipe.name}
-                    </h3>
+                    </Link>
                     <p className="shrink-0 text-xl font-black text-[#F26419]">
                       {getPrice(recipe)}
                     </p>
@@ -66,6 +87,21 @@ const MenuSection = ({ title, recipes, loading }) => {
                     <span className="rounded-full bg-slate-100 px-3.5 py-1.5 text-slate-500">
                       {recipe.prepTimeMinutes + recipe.cookTimeMinutes} min
                     </span>
+                  </div>
+                  <div className="mt-6 grid grid-cols-2 gap-3">
+                    <Link
+                      to={`/product/${recipe.id}`}
+                      className="rounded-full border border-slate-200 px-4 py-3 text-center text-sm font-black text-slate-700 transition hover:border-[#0F7F6C] hover:text-[#0F7F6C]"
+                    >
+                      View
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => handleAddToCart(recipe)}
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0F7F6C] px-4 py-3 text-sm font-black text-white transition hover:bg-[#0d6c56]"
+                    >
+                      <FaShoppingCart size={14} /> Add
+                    </button>
                   </div>
                 </div>
               </article>

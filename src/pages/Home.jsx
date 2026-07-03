@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import axios from "axios";
 import momo from "../assets/momo.png";
-import round from "../assets/round.png";
 import man from "../assets/man.png";
 import waiter from "../assets/waiter.jpg";
 import women from "../assets/women.png";
+import round from "../assets/round.png";
 import Footer from "../components/Footer";
 import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
 import {
@@ -14,10 +15,12 @@ import {
   FaPhoneAlt,
   FaPlay,
   FaRegClock,
+  FaShoppingCart,
   FaTiktok,
 } from "react-icons/fa";
 import { GiChefToque, GiHotMeal, GiPartyPopper } from "react-icons/gi";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { useCart } from "../context/useCart";
 
 const services = [
   {
@@ -38,6 +41,7 @@ const services = [
 ];
 
 const Home = () => {
+  const { addToCart } = useCart();
   const [popularRecipes, setPopularRecipes] = useState([]);
   const [loadingRecipes, setLoadingRecipes] = useState(true);
   const [selectedCuisine, setSelectedCuisine] = useState("All");
@@ -54,15 +58,20 @@ const Home = () => {
       : popularRecipes.filter((recipe) => recipe.cuisine === selectedCuisine);
 
   const visibleRecipes = filteredRecipes.length
-    ? Array.from({ length: Math.min(3, filteredRecipes.length) }, (_, index) => {
-        const currentIndex = (recipeIndex + index) % filteredRecipes.length;
-        return filteredRecipes[currentIndex];
-      })
+    ? Array.from(
+        { length: Math.min(3, filteredRecipes.length) },
+        (_, index) => {
+          const currentIndex = (recipeIndex + index) % filteredRecipes.length;
+          return filteredRecipes[currentIndex];
+        },
+      )
     : [];
 
   const handlePrevRecipe = () => {
     setRecipeIndex((currentIndex) =>
-      currentIndex === 0 ? Math.max(filteredRecipes.length - 1, 0) : currentIndex - 1,
+      currentIndex === 0
+        ? Math.max(filteredRecipes.length - 1, 0)
+        : currentIndex - 1,
     );
   };
 
@@ -77,6 +86,17 @@ const Home = () => {
     setRecipeIndex(0);
   };
 
+  const handleAddToCart = (recipe) => {
+    addToCart({
+      id: recipe.id,
+      name: recipe.name,
+      image: recipe.image,
+      price: recipe.priceValue,
+      cuisine: recipe.cuisine,
+      quantity: 1,
+    });
+  };
+
   useEffect(() => {
     const getPopularRecipes = async () => {
       try {
@@ -85,6 +105,7 @@ const Home = () => {
           id: recipe.id,
           name: recipe.name,
           price: `Rs ${recipe.caloriesPerServing}`,
+          priceValue: recipe.caloriesPerServing,
           image: recipe.image,
           cuisine: recipe.cuisine,
         }));
@@ -101,59 +122,75 @@ const Home = () => {
 
   return (
     <main className="bg-white">
-      <section className="relative min-h-screen overflow-hidden bg-white">
-        <img
-          src={round}
-          alt="Decorative round background"
-          className="pointer-events-none absolute top-0 hidden h-220 w-220 -right-45 md:block"
-        />
-
-        <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-10 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div className="space-y-8 lg:max-w-xl">
-              <div className="inline-flex rounded-full bg-[#F26419]/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.4em] text-[#F26419]">
+      <section className="overflow-hidden bg-white">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid min-h-[700px] items-center gap-12 lg:grid-cols-2">
+            {/* Left Content */}
+            <div className="z-10">
+              <p className="mb-4 uppercase tracking-[6px] text-gray-400">
                 Restaurant
-              </div>
-              <div className="space-y-6">
-                <h1 className="text-5xl font-bold tracking-tight text-slate-950 sm:text-6xl">
-                  The{" "}
-                  <span className="rounded-md bg-[#F26419] px-3 py-1 text-white">
-                    #One
-                  </span>
-                  <span className="block">Momo Restaurant</span>
-                </h1>
-                <p className="max-w-2xl text-lg leading-8 text-slate-600">
-                  More than{" "}
-                  <span className="font-semibold text-[#F26419]">
-                    20+ Varieties
-                  </span>{" "}
-                  of momo available for you. Enjoy fresh ingredients, bold
-                  flavors, and fast delivery.
-                </p>
-              </div>
+              </p>
 
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                <a
-                  href="/menu"
-                  className="inline-flex items-center justify-center rounded-full bg-[#0F7F6C] px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-[#0F7F6C]/20 transition duration-200 hover:bg-[#0d6c56]"
-                >
-                  Explore Food Menu
-                </a>
-                <a
-                  href="/contact"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-8 py-3 text-sm font-semibold text-slate-950 transition duration-200 hover:bg-slate-100"
-                >
-                  Contact Us
-                </a>
-              </div>
+              <h1 className="text-5xl font-bold leading-tight text-[#101828] md:text-7xl">
+                The{" "}
+                <span className="relative inline-block">
+                  <span className="absolute inset-0 rotate-[-6deg] rounded-md bg-[#F26419]"></span>
+                  <span className="relative px-5 py-1 text-white">#One</span>
+                </span>
+                <br />
+                Momo <span className="text-[#F26419]">Restaurant</span>
+              </h1>
+
+              <p className="mt-6 text-xl text-gray-600">
+                More than{" "}
+                <span className="font-bold text-[#F26419]">20+ Varieties</span>{" "}
+                of momo available for you
+              </p>
+
+              <button className="mt-10 rounded-full bg-[#0D7A6D] px-10 py-4 text-lg font-medium text-white transition hover:bg-[#0A6459]">
+                Explore Food Menu →
+              </button>
             </div>
 
-            <div className="relative">
-              <div className="absolute -left-10 top-10 hidden h-40 w-40 rounded-full bg-[#F26419]/10 blur-3xl lg:block" />
+            {/* Right Image */}
+            <div className="relative flex min-h-[300px] items-center justify-center  sm:min-h-[420px] lg:min-h-[700px] lg:justify-end">
+              {/* Round Background Image */}
+              <img 
+                src={round}
+                alt="round background"
+                className="  pointer-events-none
+      absolute
+      top-1/2
+      -translate-y-1/2
+      z-0
+    
+     
+      w-[250px]
+
+      right-[-20px] w-[250px]
+
+      sm:right-[-150px] sm:w-[480px]
+
+      md:right-[-180px] md:w-[620px]
+
+      lg:right-[-170px] lg:w-[850px]"
+              />
+
+              {/* Momo Image */}
               <img
                 src={momo}
-                alt="Momo restaurant dish"
-                className="relative mx-auto w-full max-w-156 rounded-4xl object-cover shadow-[0_35px_80px_rgba(15,127,108,0.15)]"
+                alt="Momo"
+                className="relative
+      z-10
+      object-contain
+
+      w-[340px]
+
+      sm:w-[340px]
+
+      md:w-[480px]
+
+      lg:w-[700px]"
               />
             </div>
           </div>
@@ -239,18 +276,33 @@ const Home = () => {
                   </div>
                 ))
               : visibleRecipes.map((recipe) => (
-                  <div key={recipe.id} className="min-w-52 text-center md:min-w-0">
-                    <img
-                      src={recipe.image}
-                      alt={recipe.name}
-                      className="mx-auto h-52 w-52 rounded-full object-cover"
-                    />
-                    <h3 className="mt-4 text-xl font-semibold">
+                  <div
+                    key={recipe.id}
+                    className="min-w-56 rounded-lg bg-white p-4 text-center shadow-sm shadow-slate-200/70 md:min-w-0"
+                  >
+                    <Link to={`/product/${recipe.id}`}>
+                      <img
+                        src={recipe.image}
+                        alt={recipe.name}
+                        className="mx-auto h-52 w-52 rounded-full object-cover transition duration-300 hover:scale-105"
+                      />
+                    </Link>
+                    <Link
+                      to={`/product/${recipe.id}`}
+                      className="mt-4 block text-xl font-semibold transition hover:text-[#0F7F6C]"
+                    >
                       {recipe.name}
-                    </h3>
+                    </Link>
                     <p className="text-2xl font-bold text-[#F26419]">
                       {recipe.price}
                     </p>
+                    <button
+                      type="button"
+                      onClick={() => handleAddToCart(recipe)}
+                      className="mx-auto mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-[#0F7F6C] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#0d6c56]"
+                    >
+                      <FaShoppingCart size={13} /> Add
+                    </button>
                   </div>
                 ))}
             {!loadingRecipes && filteredRecipes.length === 0 && (

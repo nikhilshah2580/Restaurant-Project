@@ -7,6 +7,8 @@ import Recipie from '../pages/recipie'
 import Service from '../pages/Service'
 import AllergyAdvice from '../pages/AllergyAdvice'
 import PageNotFound from '../pages/PageNotFound'
+import ProductDetail from '../pages/ProductDetail'
+import Cart from '../pages/Cart'
 
 const AppRoutes = () => {
   return (
@@ -15,6 +17,8 @@ const AppRoutes = () => {
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/menu" element={<Menu />} />
+      <Route path="/product/:id" element={<ProductDetail />} />
+      <Route path="/cart" element={<Cart />} />
       <Route path="/recipe" element={<Recipie />} />
       <Route path="/recipie" element={<Recipie />} />
       <Route path="/service" element={<Service />} />

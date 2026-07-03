@@ -6,10 +6,13 @@ import {
   FaInstagram,
   FaBars,
   FaTimes,
+  FaShoppingCart,
 } from "react-icons/fa";
+import { useCart } from "../context/useCart";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { cartCount } = useCart();
   const activeClass = "text-orange-600 font-semibold";
   const defaultClass =
     "text-slate-600 hover:text-orange-600 transition-colors duration-200";
@@ -111,6 +114,19 @@ const Navbar = () => {
             </div>
 
             <NavLink
+              to="/cart"
+              className="relative flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:border-[#0F7F6C] hover:text-[#0F7F6C]"
+              aria-label="Cart"
+            >
+              <FaShoppingCart size={17} />
+              {cartCount > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#F26419] px-1 text-xs font-black text-white">
+                  {cartCount}
+                </span>
+              )}
+            </NavLink>
+
+            <NavLink
               to="/contact"
               className="rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-orange-200/50 transition-colors duration-200 hover:bg-orange-700"
             >
@@ -199,6 +215,19 @@ const Navbar = () => {
                   <FaInstagram size={18} />
                 </a>
               </div>
+              <NavLink
+                to="/cart"
+                className="relative flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:border-[#0F7F6C] hover:text-[#0F7F6C]"
+                aria-label="Cart"
+                onClick={() => setOpen(false)}
+              >
+                <FaShoppingCart size={17} />
+                {cartCount > 0 && (
+                  <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#F26419] px-1 text-xs font-black text-white">
+                    {cartCount}
+                  </span>
+                )}
+              </NavLink>
               <NavLink
                 to="/contact"
                 className="rounded-full bg-orange-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-orange-200/50 transition-colors duration-200 hover:bg-orange-700"
