@@ -143,7 +143,7 @@ const About = () => {
         ))}
       </section>
 
-      <section className="grid bg-slate-900 lg:min-h-[560px] lg:grid-cols-2">
+      <section className="grid bg-slate-900 lg:min-h-140 lg:grid-cols-2">
         <div className="relative overflow-hidden">
           <img
             src={aboutveg}
@@ -173,7 +173,7 @@ const About = () => {
         <img
           src={aboutwomen2}
           alt="Company leader"
-          className="h-[420px] w-full object-cover object-top sm:h-[560px] lg:h-full lg:min-h-[560px]"
+          className="h-105 w-full object-cover object-top sm:h-140 lg:h-full lg:min-h-140"
         />
       </section>
 
@@ -191,14 +191,14 @@ const About = () => {
           {team.map((member) => (
             <article
               key={member.title + member.image}
-              className="relative h-[360px] overflow-hidden rounded-md sm:h-[420px]"
+              className="relative h-90 overflow-hidden rounded-md sm:h-105"
             >
               <img
                 src={member.image}
                 alt={member.title}
                 className="h-full w-full object-cover object-top"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-6">
+              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/85 to-transparent p-6">
                 <h3 className="text-2xl font-bold text-white">
                   {member.title}
                 </h3>

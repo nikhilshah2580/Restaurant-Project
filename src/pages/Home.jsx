@@ -153,7 +153,7 @@ const Home = () => {
             </div>
 
             {/* Right Image */}
-            <div className="relative flex min-h-[300px] items-center justify-center  sm:min-h-[420px] lg:min-h-[700px] lg:justify-end">
+            <div className="relative flex min-h-75 items-center justify-center  sm:min-h-105 lg:min-h-175 lg:justify-end">
               {/* Round Background Image */}
               <img 
                 src={round}
@@ -165,11 +165,11 @@ const Home = () => {
       z-0
     
      
-      w-[250px]
+      w-62.5
 
-      right-[-20px] w-[250px]
+      -right-5 w-62.5
 
-      sm:right-[-150px] sm:w-[480px]
+      sm:right-[-150px] sm:w-120
 
       md:right-[-180px] md:w-[620px]
 
@@ -528,7 +528,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="relative h-[520px] overflow-hidden bg-slate-100">
+      <section className="relative h-130 overflow-hidden bg-slate-100">
         <iframe
           title="New Baneshwor Kathmandu map"
           src="https://www.google.com/maps?q=Kathmandu New Baneshwor &output=embed"
