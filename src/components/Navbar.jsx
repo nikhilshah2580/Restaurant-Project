@@ -7,15 +7,24 @@ import {
   FaBars,
   FaTimes,
   FaShoppingCart,
+  FaSignOutAlt,
+  FaUserCircle,
 } from "react-icons/fa";
 import { useCart } from "../context/useCart";
+import { useAuth } from "../context/useAuth";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { cartCount } = useCart();
+  const { isAuthenticated, logout } = useAuth();
   const activeClass = "text-orange-600 font-semibold";
   const defaultClass =
     "text-slate-600 hover:text-orange-600 transition-colors duration-200";
+
+  const handleLogout = () => {
+    logout();
+    setOpen(false);
+  };
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-30">
@@ -155,6 +164,25 @@ const Navbar = () => {
             >
               Contact Us
             </NavLink>
+
+            {isAuthenticated ? (
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-red-200 hover:text-red-500"
+              >
+                <FaSignOutAlt />
+                Logout
+              </button>
+            ) : (
+              <NavLink
+                to="/login"
+                className="inline-flex items-center gap-2 rounded-full border border-[#0F7F6C] px-4 py-2 text-sm font-semibold text-[#0F7F6C] transition hover:bg-[#0F7F6C] hover:text-white"
+              >
+                <FaUserCircle />
+                Login
+              </NavLink>
+            )}
           </div>
         </div>
 
@@ -213,6 +241,23 @@ const Navbar = () => {
               >
                 Contact Us
               </NavLink>
+              {isAuthenticated ? (
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="rounded-full border border-slate-200 px-5 py-3 text-center text-sm font-semibold text-slate-600 transition hover:border-red-200 hover:text-red-500"
+                >
+                  Logout
+                </button>
+              ) : (
+                <NavLink
+                  to="/login"
+                  className="rounded-full border border-[#0F7F6C] px-5 py-3 text-center text-sm font-semibold text-[#0F7F6C] transition hover:bg-[#0F7F6C] hover:text-white"
+                  onClick={() => setOpen(false)}
+                >
+                  Login
+                </NavLink>
+              )}
             </div>
           </div>
         )}

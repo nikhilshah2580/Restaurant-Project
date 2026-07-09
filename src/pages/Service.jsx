@@ -35,15 +35,15 @@ const Service = () => {
 
   return (
     <main className="bg-white">
-      <section className="mx-auto grid min-h-135 max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:px-8">
+      <section className="mx-auto grid min-h-170 max-w-7xl items-center gap-12 overflow-hidden px-6 py-16 sm:py-20 lg:grid-cols-2 lg:px-8">
         <div className="text-center lg:text-left">
-          <p className="font-['Brush_Script_MT',cursive] text-5xl italic leading-tight text-[#0F7F6C] md:text-6xl">
+          <p className="font-serif text-4xl italic text-[#0F7F6C] sm:text-5xl">
             Our Services
           </p>
-          <p className="mt-10 text-sm font-semibold uppercase tracking-[0.42em] text-slate-400">
+          <p className="mt-10 text-xs font-bold uppercase tracking-[0.25em] text-slate-400 sm:mt-16 sm:text-sm sm:tracking-[0.35em]">
             Knowing Our Customers Needs
           </p>
-          <h1 className="mt-5 text-2xl font-extrabold leading-tight text-[#111827] sm:text-3xl">
+          <h1 className="mx-auto mt-5 max-w-xl text-3xl font-bold leading-tight text-[#101828] sm:text-4xl md:text-5xl lg:mx-0">
             <span className="block text-orange-600">
               We're more than just momos.
             </span>
@@ -51,19 +51,19 @@ const Service = () => {
           </h1>
         </div>
 
-        <div className="relative mx-auto flex min-h-90 w-full max-w-lg items-center justify-center">
-          <div className="absolute right-6 top-16 h-72 w-72 rounded-full bg-[#0F7F6C] sm:h-88 sm:w-88" />
-          <div className="absolute left-4 top-20 hidden h-44 w-44 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] bg-size-[18px_18px] md:block" />
-          <div className="absolute bottom-2 right-0 hidden h-44 w-44 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] bg-size-[18px_18px] md:block" />
+        <div className="relative flex min-h-90 justify-center sm:min-h-115">
+          <div className="absolute top-12 h-72 w-72 rounded-full bg-[#0F7F6C] sm:h-88 sm:w-88 lg:right-4" />
+          <div className="absolute left-8 top-28 hidden h-52 w-52 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] bg-size-[18px_18px] md:block" />
+          <div className="absolute bottom-0 right-0 hidden h-52 w-52 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] bg-size-[18px_18px] md:block" />
           <img
             src={team1}
             alt="Chef showing approval"
-            className="relative z-10 h-90 w-70 rounded-b-full object-cover object-top sm:h-110 sm:w-85"
+            className="relative z-10 h-85 w-57.5 rounded-full object-cover object-top sm:h-107.5 sm:w-75 lg:translate-x-10"
           />
         </div>
       </section>
 
-      <section className="relative min-h-135 overflow-hidden bg-slate-900">
+      <section className="relative min-h-115 overflow-hidden bg-slate-900 sm:min-h-140">
         {loading ? (
           <div className="absolute inset-0 animate-pulse bg-slate-200" />
         ) : (
@@ -74,13 +74,13 @@ const Service = () => {
           />
         )}
         <div className="absolute inset-0 bg-slate-950/55" />
-        <div className="relative mx-auto flex min-h-135 max-w-7xl flex-col justify-center px-6 text-white lg:px-8">
-          <h2 className="text-4xl font-extrabold sm:text-5xl">Dine With Us</h2>
-          <p className="mt-5 max-w-4xl text-lg leading-8 text-white/90">
+        <div className="relative mx-auto flex min-h-115 max-w-7xl flex-col justify-center px-6 text-white sm:min-h-140 lg:px-8">
+          <h2 className="text-3xl font-bold sm:text-5xl">Dine With Us</h2>
+          <p className="mt-3 max-w-2xl text-base text-white/85 sm:text-lg">
             Enjoy our momos in the comfort of your own home with our delivery
             services.
           </p>
-          <button className="mt-9 inline-flex w-fit items-center gap-4 rounded-full bg-[#0F7F6C] px-7 py-4 text-sm font-bold transition hover:bg-[#0b6858]">
+          <button className="mt-9 inline-flex w-fit items-center gap-3 rounded-full bg-[#0F7F6C] px-7 py-4 text-sm font-semibold transition hover:bg-[#0b6858]">
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#0F7F6C]">
               <FaPlay size={10} />
             </span>

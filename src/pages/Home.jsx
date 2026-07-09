@@ -123,8 +123,8 @@ const Home = () => {
   return (
     <main className="bg-white">
       <section className="overflow-hidden bg-white">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid min-h-175 items-center gap-12 lg:grid-cols-2">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid min-h-[calc(100vh-72px)] items-center gap-8 py-8 sm:gap-10 sm:py-10 lg:grid-cols-2 lg:gap-12 lg:py-6">
             {/* Left Content */}
             <div className="z-10">
               <p className="mb-4 uppercase tracking-[6px] text-gray-400">

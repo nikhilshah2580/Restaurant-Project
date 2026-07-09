@@ -98,34 +98,37 @@ const Contact = () => {
       </section>
 
       <section className="bg-slate-50">
-        <div className="grid min-h-190 lg:grid-cols-[1fr_1.25fr]">
-          <div className="relative min-h-130 overflow-hidden bg-[#edf2f2] lg:min-h-full">
-            <div className="absolute inset-0 opacity-70 bg-[linear-gradient(30deg,rgba(148,163,184,0.22)_12%,transparent_12.5%,transparent_87%,rgba(148,163,184,0.22)_87.5%,rgba(148,163,184,0.22)),linear-gradient(150deg,rgba(148,163,184,0.22)_12%,transparent_12.5%,transparent_87%,rgba(148,163,184,0.22)_87.5%,rgba(148,163,184,0.22)),linear-gradient(30deg,rgba(148,163,184,0.22)_12%,transparent_12.5%,transparent_87%,rgba(148,163,184,0.22)_87.5%,rgba(148,163,184,0.22)),linear-gradient(150deg,rgba(148,163,184,0.22)_12%,transparent_12.5%,transparent_87%,rgba(148,163,184,0.22)_87.5%,rgba(148,163,184,0.22)),linear-gradient(60deg,rgba(100,116,139,0.16)_25%,transparent_25.5%,transparent_75%,rgba(100,116,139,0.16)_75%,rgba(100,116,139,0.16)),linear-gradient(60deg,rgba(100,116,139,0.16)_25%,transparent_25.5%,transparent_75%,rgba(100,116,139,0.16)_75%,rgba(100,116,139,0.16))] bg-position-[0_0,0_0,32px_56px,32px_56px,0_0,32px_56px] bg-size-[64px_112px]" />
-            <div className="absolute left-8 top-8 flex overflow-hidden rounded-md border border-slate-200 bg-white text-sm font-semibold shadow-sm">
+        <div className="grid lg:min-h-190 lg:grid-cols-[1fr_1.25fr]">
+          <div className="relative h-95 overflow-hidden bg-[#edf2f2] sm:h-120 lg:h-auto lg:min-h-full">
+            <iframe
+              title="New Baneshwor Kathmandu map"
+              src="https://www.google.com/maps?q=Kathmandu New Baneshwor &output=embed"
+              className="absolute inset-0 h-full w-full border-0"
+              loading="lazy"
+            />
+            <div className="absolute left-4 top-4 flex overflow-hidden rounded-md border border-slate-200 bg-white text-sm font-semibold shadow-sm sm:left-8 sm:top-8">
               <button className="bg-white px-4 py-3 text-slate-900">Map</button>
               <button className="border-l border-slate-200 px-4 py-3 text-slate-400">
                 Satellite
               </button>
             </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="mt-16 rounded-lg bg-white px-8 py-7 text-center shadow-[0_18px_40px_rgba(15,23,42,0.16)]">
-                <h3 className="text-xl font-extrabold text-slate-800">
+            <div className="absolute inset-x-4 bottom-5 sm:inset-x-auto sm:left-8 sm:max-w-md">
+              <div className="rounded-lg bg-white/95 px-5 py-5 text-center shadow-[0_18px_40px_rgba(15,23,42,0.16)] backdrop-blur sm:px-8 sm:py-6">
+                <h3 className="text-base font-extrabold text-slate-800 sm:text-xl">
                   New Baneshwor, Kathmandu, Bagmati, Nepal
                 </h3>
-
-                <iframe
-                  title="New Baneshwor Kathmandu map"
-                  src="https://www.google.com/maps?q=Kathmandu New Baneshwor &output=embed"
-                  className="absolute inset-0 h-full w-full border-0 "
-                  loading="lazy"
-                />
-                <a className="mt-5 inline-flex items-center gap-2 font-bold text-blue-500">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=New+Baneshwor+Kathmandu"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-flex items-center gap-2 font-bold text-blue-500"
+                >
                   Get Direction <FaDirections size={14} />
                 </a>
               </div>
             </div>
-            <FaMapMarkerAlt className="absolute left-1/2 top-[54%] -translate-x-1/2 text-5xl text-red-600 drop-shadow-lg" />
-            <div className="absolute bottom-10 right-10 grid gap-3">
+            <FaMapMarkerAlt className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full text-5xl text-red-600 drop-shadow-lg" />
+            <div className="absolute right-4 top-20 grid gap-3 sm:right-8 sm:top-auto sm:bottom-8">
               <button
                 type="button"
                 className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-700 shadow-md"
@@ -143,8 +146,8 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center px-6 py-14 lg:px-14">
-            <form className="w-full max-w-2xl rounded-2xl bg-white p-8 shadow-sm md:p-11">
+          <div className="flex items-center justify-center px-6 py-12 lg:px-14">
+            <form className="w-full max-w-2xl rounded-lg bg-white p-6 shadow-sm sm:p-8 md:p-11">
               <h2 className="text-3xl font-extrabold text-slate-900">
                 Contact <span className="text-orange-600">Us</span>
               </h2>

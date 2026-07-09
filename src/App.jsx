@@ -1,10 +1,14 @@
 import Navbar from './components/Navbar'
 import AppRoutes from './routes/AppRoutes'
+import { useLocation } from 'react-router'
 
 const App = () => {
+  const location = useLocation()
+  const hideNavbar = location.pathname === '/login'
+
   return (
     <div>
-      <Navbar />
+      {!hideNavbar && <Navbar />}
       <main>
         <AppRoutes />
       </main>

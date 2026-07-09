@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import axios from "axios";
-import { FaMinus, FaPlus, FaShoppingCart, FaStar } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaMinus,
+  FaPlus,
+  FaShoppingCart,
+  FaStar,
+} from "react-icons/fa";
 import Footer from "../components/Footer";
 import { useCart } from "../context/useCart";
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { addToCart } = useCart();
   const [recipe, setRecipe] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -38,6 +45,15 @@ const ProductDetail = () => {
       cuisine: recipe.cuisine,
       quantity,
     });
+  };
+
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+      return;
+    }
+
+    navigate("/menu");
   };
 
   if (loading) {
@@ -79,7 +95,18 @@ const ProductDetail = () => {
   return (
     <main className="bg-white">
       <section className="bg-gradient-to-b from-[#F8FCFB] to-white">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+          <button
+            type="button"
+            onClick={handleBack}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-[#0F7F6C] hover:text-[#0F7F6C] sm:w-auto sm:gap-2 sm:px-5 sm:py-3 sm:text-sm sm:font-bold"
+            aria-label="Back"
+          >
+            <FaArrowLeft />
+            <span className="hidden sm:inline">Back</span>
+          </button>
+
+          <div className="grid items-center gap-12 py-8 lg:grid-cols-[0.95fr_1.05fr] lg:py-12">
           <div className="relative overflow-hidden rounded-lg bg-slate-50 p-5 shadow-xl shadow-slate-200/70">
             <img
               src={recipe.image}
@@ -89,12 +116,6 @@ const ProductDetail = () => {
           </div>
 
           <div>
-            <Link
-              to="/menu"
-              className="text-sm font-bold uppercase tracking-[0.25em] text-[#0F7F6C]"
-            >
-              Back to menu
-            </Link>
             <h1 className="mt-5 text-4xl font-black leading-tight text-[#111827] sm:text-5xl">
               {recipe.name}
             </h1>
@@ -154,6 +175,7 @@ const ProductDetail = () => {
                 <FaShoppingCart /> Add to Cart
               </button>
             </div>
+          </div>
           </div>
         </div>
       </section>

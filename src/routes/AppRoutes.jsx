@@ -9,6 +9,7 @@ import AllergyAdvice from '../pages/AllergyAdvice'
 import PageNotFound from '../pages/PageNotFound'
 import ProductDetail from '../pages/ProductDetail'
 import Cart from '../pages/Cart'
+import Login from '../pages/Login'
 import Payment from '../pages/payment/Payment'
 import Success from '../pages/payment/Success'
 import Failure from '../pages/payment/Failure'
@@ -22,11 +23,11 @@ const AppRoutes = () => {
       <Route path="/menu" element={<Menu />} />
       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/payment/success" element={<Success />} />
       <Route path="/payment/failure" element={<Failure />} />
       <Route path="/recipe" element={<Recipie />} />
-      <Route path="/recipie" element={<Recipie />} />
       <Route path="/service" element={<Service />} />
       <Route path="/allergy" element={<AllergyAdvice />} />
       <Route path="*" element={<PageNotFound />} />
