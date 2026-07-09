@@ -9,6 +9,9 @@ import AllergyAdvice from '../pages/AllergyAdvice'
 import PageNotFound from '../pages/PageNotFound'
 import ProductDetail from '../pages/ProductDetail'
 import Cart from '../pages/Cart'
+import Payment from '../pages/payment/Payment'
+import Success from '../pages/payment/Success'
+import Failure from '../pages/payment/Failure'
 
 const AppRoutes = () => {
   return (
@@ -19,6 +22,9 @@ const AppRoutes = () => {
       <Route path="/menu" element={<Menu />} />
       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/payment" element={<Payment />} />
+      <Route path="/payment/success" element={<Success />} />
+      <Route path="/payment/failure" element={<Failure />} />
       <Route path="/recipe" element={<Recipie />} />
       <Route path="/recipie" element={<Recipie />} />
       <Route path="/service" element={<Service />} />

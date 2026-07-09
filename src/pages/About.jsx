@@ -58,7 +58,7 @@ const team = [
 const About = () => {
   return (
     <main className="bg-white">
-      <section className="mx-auto grid min-h-[680px] max-w-7xl items-center gap-12 overflow-hidden px-6 py-16 sm:py-20 lg:grid-cols-2 lg:px-8">
+      <section className="mx-auto grid min-h-170 max-w-7xl items-center gap-12 overflow-hidden px-6 py-16 sm:py-20 lg:grid-cols-2 lg:px-8">
         <div className="text-center lg:text-left">
           <p className="font-serif text-4xl italic text-[#0F7F6C] sm:text-5xl">
             About Us
@@ -72,26 +72,26 @@ const About = () => {
           </h1>
         </div>
 
-        <div className="relative flex min-h-[360px] justify-center sm:min-h-[460px]">
+        <div className="relative flex min-h-90 justify-center sm:min-h-115">
           <div className="absolute top-12 h-72 w-72 rounded-full bg-[#0F7F6C] sm:h-88 sm:w-88 lg:right-4" />
-          <div className="absolute left-8 top-28 hidden h-52 w-52 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] [background-size:18px_18px] md:block" />
-          <div className="absolute bottom-0 right-0 hidden h-52 w-52 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] [background-size:18px_18px] md:block" />
+          <div className="absolute left-8 top-28 hidden h-52 w-52 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] bg-size-[18px_18px] md:block" />
+          <div className="absolute bottom-0 right-0 hidden h-52 w-52 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] bg-size-[18px_18px] md:block" />
           <img
             src={aboutwomen}
             alt="Chef holding cooking spoon"
-            className="relative z-10 h-[340px] w-[230px] rounded-full object-cover object-top sm:h-[430px] sm:w-[300px] lg:translate-x-10"
+            className="relative z-10 h-85 w-57.5 rounded-full object-cover object-top sm:h-107.5 sm:w-75 lg:translate-x-10"
           />
         </div>
       </section>
 
-      <section className="relative min-h-[460px] overflow-hidden sm:min-h-[560px]">
+      <section className="relative min-h-115 overflow-hidden sm:min-h-140">
         <img
           src={aboutveg}
           alt="Chef preparing momos"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-slate-950/55" />
-        <div className="relative mx-auto flex min-h-[460px] max-w-7xl flex-col justify-center px-6 text-white sm:min-h-[560px] lg:px-8">
+        <div className="relative mx-auto flex min-h-115 max-w-7xl flex-col justify-center px-6 text-white sm:min-h-140 lg:px-8">
           <h2 className="text-3xl font-bold sm:text-5xl">
             Process behind the making
           </h2>
@@ -129,7 +129,7 @@ const About = () => {
               <img
                 src={block.image}
                 alt="Momo preparation"
-                className="h-[260px] w-full rounded-md object-cover sm:h-[360px]"
+                className="h-65 w-full rounded-md object-cover sm:h-90"
               />
               <img
                 src={block.plate}
@@ -228,3 +228,4 @@ const About = () => {
 };
 
 export default About;
+

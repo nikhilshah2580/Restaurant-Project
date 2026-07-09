@@ -20,24 +20,47 @@ const Navbar = () => {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-30">
       <nav className="max-w-7xl mx-auto px-4 py-4 md:px-6 md:py-5">
-        <div className="flex items-center justify-between gap-4">
-          <NavLink to="/" className="flex items-center gap-3">
+        <div className="flex items-center justify-between gap-3">
+          <NavLink
+            to="/"
+            className="flex min-w-0 items-center gap-2 sm:gap-3"
+            onClick={() => setOpen(false)}
+          >
             <img
               src="/logo.png"
               alt="logo"
-              className="h-10 w-10 object-contain"
+              className="h-10 w-10 shrink-0 object-contain"
             />
-            <span className="text-2xl font-bold text-[#0F7F6C]">momos</span>
+            <span className="truncate text-2xl font-bold text-[#0F7F6C]">
+              momos
+            </span>
           </NavLink>
 
-          <button
-            type="button"
-            onClick={() => setOpen(!open)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:border-slate-300 hover:text-orange-600 md:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
-          >
-            {open ? <FaTimes size={18} /> : <FaBars size={18} />}
-          </button>
+          <div className="ml-auto flex items-center gap-2 md:hidden">
+            <NavLink
+              to="/cart"
+              className="relative flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:border-[#0F7F6C] hover:text-[#0F7F6C]"
+              aria-label="Cart"
+              onClick={() => setOpen(false)}
+            >
+              <FaShoppingCart size={17} />
+              {cartCount > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#F26419] px-1 text-xs font-black text-white">
+                  {cartCount}
+                </span>
+              )}
+            </NavLink>
+
+            <button
+              type="button"
+              onClick={() => setOpen(!open)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:border-slate-300 hover:text-orange-600"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+            >
+              {open ? <FaTimes size={18} /> : <FaBars size={18} />}
+            </button>
+          </div>
 
           <div className="hidden items-center gap-6 md:flex md:flex-1 md:justify-center md:text-sm md:font-semibold md:text-slate-500">
             <NavLink
@@ -136,7 +159,7 @@ const Navbar = () => {
         </div>
 
         {open && (
-          <div className="mt-4 rounded-3xl border border-slate-200 bg-white p-4 shadow-lg md:hidden">
+          <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-lg md:hidden">
             <div className="flex flex-col gap-4 text-sm font-semibold text-slate-700">
               <NavLink
                 to="/"
@@ -183,54 +206,9 @@ const Navbar = () => {
               >
                 Allergy Advice
               </NavLink>
-            </div>
-
-            <div className="mt-5 flex items-center justify-between gap-3 border-t border-slate-200 pt-4">
-              <div className="flex items-center gap-3 text-slate-500">
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Facebook"
-                  className="hover:text-[#1877F2]"
-                >
-                  <FaFacebookF size={18} />
-                </a>
-                <a
-                  href="https://tiktok.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="TikTok"
-                  className="hover:text-black"
-                >
-                  <FaTiktok size={18} />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Instagram"
-                  className="hover:text-pink-500"
-                >
-                  <FaInstagram size={18} />
-                </a>
-              </div>
-              <NavLink
-                to="/cart"
-                className="relative flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:border-[#0F7F6C] hover:text-[#0F7F6C]"
-                aria-label="Cart"
-                onClick={() => setOpen(false)}
-              >
-                <FaShoppingCart size={17} />
-                {cartCount > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#F26419] px-1 text-xs font-black text-white">
-                    {cartCount}
-                  </span>
-                )}
-              </NavLink>
               <NavLink
                 to="/contact"
-                className="rounded-full bg-orange-600 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-orange-200/50 transition-colors duration-200 hover:bg-orange-700"
+                className="rounded-full bg-orange-600 px-5 py-3 text-center text-sm font-semibold text-white shadow-lg shadow-orange-200/50 transition-colors duration-200 hover:bg-orange-700"
                 onClick={() => setOpen(false)}
               >
                 Contact Us

@@ -24,14 +24,14 @@ const MenuSection = ({ title, recipes, loading }) => {
   };
 
   return (
-    <section className="mx-auto max-w-[1500px] px-5 py-16 sm:px-8 sm:py-20 lg:px-10 xl:px-14">
+    <section className="mx-auto max-w-375 px-5 py-16 sm:px-8 sm:py-20 lg:px-10 xl:px-14">
       <div className="mb-12 grid grid-cols-[1fr_auto_1fr] items-center gap-4 sm:mb-16 sm:gap-7">
-        <div className="h-px bg-gradient-to-r from-transparent via-[#0F7F6C] to-[#0F7F6C]" />
+        <div className="h-px bg-linear-to-r from-transparent via-[#0F7F6C] to-[#0F7F6C]" />
         <h2 className="shrink-0 text-center text-xl font-black uppercase tracking-wide text-[#111827] sm:text-3xl lg:text-4xl">
           <span className="text-[#F26419]">{title}</span>{" "}
           <span>Momo's</span>
         </h2>
-        <div className="h-px bg-gradient-to-r from-[#0F7F6C] via-[#0F7F6C] to-transparent" />
+        <div className="h-px bg-linear-to-r from-[#0F7F6C] via-[#0F7F6C] to-transparent" />
       </div>
 
       <div className="grid grid-cols-1 gap-y-12 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 2xl:gap-x-10">
@@ -50,11 +50,11 @@ const MenuSection = ({ title, recipes, loading }) => {
           : recipes.map((recipe) => (
               <article
                 key={recipe.id}
-                className="group flex min-h-[520px] flex-col overflow-hidden rounded-lg border border-slate-100 bg-white shadow-sm shadow-slate-200/70 transition duration-200 hover:-translate-y-1 hover:border-[#0F7F6C]/20 hover:shadow-xl hover:shadow-slate-200"
+                className="group flex min-h-130 flex-col overflow-hidden rounded-lg border border-slate-100 bg-white shadow-sm shadow-slate-200/70 transition duration-200 hover:-translate-y-1 hover:border-[#0F7F6C]/20 hover:shadow-xl hover:shadow-slate-200"
               >
                 <Link
                   to={`/product/${recipe.id}`}
-                  className="flex h-76 items-center justify-center bg-gradient-to-b from-slate-50 to-white p-5"
+                  className="flex h-76 items-center justify-center bg-linear-to-b from-slate-50 to-white p-5"
                 >
                   <img
                     src={recipe.image}
@@ -137,7 +137,7 @@ const Menu = () => {
 
   return (
     <main className="bg-white">
-      <section className="bg-gradient-to-b from-[#F8FCFB] to-white">
+      <section className="bg-linear-to-b from-[#F8FCFB] to-white">
         <div className="mx-auto max-w-7xl px-5 pb-16 pt-18 text-center sm:px-8 sm:pb-20 sm:pt-20 lg:px-10">
           <div
             className="text-4xl font-medium italic text-[#0F7F6C] sm:text-5xl"

@@ -1,9 +1,10 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { FaMinus, FaPlus, FaRegTrashAlt, FaShoppingCart } from "react-icons/fa";
 import Footer from "../components/Footer";
 import { useCart } from "../context/useCart";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const {
     items,
     cartTotal,
@@ -12,6 +13,18 @@ const Cart = () => {
     removeFromCart,
     clearCart,
   } = useCart();
+
+  const handleCheckout = () => {
+    navigate("/payment", {
+      state: {
+        amount: cartTotal,
+        items,
+        transactionUuid: `MOMO-${Date.now()}-${Math.random()
+          .toString(36)
+          .slice(2, 8)}`,
+      },
+    });
+  };
 
   return (
     <main className="bg-white">
@@ -128,7 +141,11 @@ const Cart = () => {
               <span>Total</span>
               <span className="text-[#F26419]">Rs {cartTotal}</span>
             </div>
-            <button className="mt-7 w-full rounded-full bg-[#0F7F6C] px-6 py-4 font-bold text-white transition hover:bg-[#0d6c56]">
+            <button
+              type="button"
+              onClick={handleCheckout}
+              className="mt-7 block w-full rounded-full bg-[#0F7F6C] px-6 py-4 text-center font-bold text-white transition hover:bg-[#0d6c56]"
+            >
               Checkout
             </button>
             <button

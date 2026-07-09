@@ -51,19 +51,19 @@ const Service = () => {
           </h1>
         </div>
 
-        <div className="relative mx-auto flex min-h-[360px] w-full max-w-lg items-center justify-center">
+        <div className="relative mx-auto flex min-h-90 w-full max-w-lg items-center justify-center">
           <div className="absolute right-6 top-16 h-72 w-72 rounded-full bg-[#0F7F6C] sm:h-88 sm:w-88" />
-          <div className="absolute left-4 top-20 hidden h-44 w-44 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] [background-size:18px_18px] md:block" />
-          <div className="absolute bottom-2 right-0 hidden h-44 w-44 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] [background-size:18px_18px] md:block" />
+          <div className="absolute left-4 top-20 hidden h-44 w-44 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] bg-size-[18px_18px] md:block" />
+          <div className="absolute bottom-2 right-0 hidden h-44 w-44 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] bg-size-[18px_18px] md:block" />
           <img
             src={team1}
             alt="Chef showing approval"
-            className="relative z-10 h-[360px] w-[280px] rounded-b-full object-cover object-top sm:h-[440px] sm:w-[340px]"
+            className="relative z-10 h-90 w-70 rounded-b-full object-cover object-top sm:h-110 sm:w-85"
           />
         </div>
       </section>
 
-      <section className="relative min-h-[540px] overflow-hidden bg-slate-900">
+      <section className="relative min-h-135 overflow-hidden bg-slate-900">
         {loading ? (
           <div className="absolute inset-0 animate-pulse bg-slate-200" />
         ) : (
@@ -74,7 +74,7 @@ const Service = () => {
           />
         )}
         <div className="absolute inset-0 bg-slate-950/55" />
-        <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-center px-6 text-white lg:px-8">
+        <div className="relative mx-auto flex min-h-135 max-w-7xl flex-col justify-center px-6 text-white lg:px-8">
           <h2 className="text-4xl font-extrabold sm:text-5xl">Dine With Us</h2>
           <p className="mt-5 max-w-4xl text-lg leading-8 text-white/90">
             Enjoy our momos in the comfort of your own home with our delivery
@@ -153,9 +153,9 @@ const Service = () => {
 const ServiceImage = ({ src, alt, loading }) => (
   <div className="relative overflow-hidden rounded-lg bg-slate-100 shadow-sm">
     {loading ? (
-      <div className="h-[380px] animate-pulse bg-slate-200" />
+      <div className="h-95 animate-pulse bg-slate-200" />
     ) : (
-      <img src={src} alt={alt} className="h-[380px] w-full object-cover" />
+      <img src={src} alt={alt} className="h-95 w-full object-cover" />
     )}
     <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-black/30 px-3 py-2">
       <span className="h-2 w-7 rounded-full bg-white" />

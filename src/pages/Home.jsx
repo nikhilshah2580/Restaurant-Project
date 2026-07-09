@@ -124,7 +124,7 @@ const Home = () => {
     <main className="bg-white">
       <section className="overflow-hidden bg-white">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid min-h-[700px] items-center gap-12 lg:grid-cols-2">
+          <div className="grid min-h-175 items-center gap-12 lg:grid-cols-2">
             {/* Left Content */}
             <div className="z-10">
               <p className="mb-4 uppercase tracking-[6px] text-gray-400">
@@ -134,7 +134,7 @@ const Home = () => {
               <h1 className="text-5xl font-bold leading-tight text-[#101828] md:text-7xl">
                 The{" "}
                 <span className="relative inline-block">
-                  <span className="absolute inset-0 rotate-[-6deg] rounded-md bg-[#F26419]"></span>
+                  <span className="absolute inset-0 -rotate-6 rounded-md bg-[#F26419]"></span>
                   <span className="relative px-5 py-1 text-white">#One</span>
                 </span>
                 <br />
@@ -167,13 +167,13 @@ const Home = () => {
      
       w-62.5
 
-      -right-5 w-62.5
+      -right-5
 
-      sm:right-[-150px] sm:w-120
+      sm:-right-37.5 sm:w-120
 
-      md:right-[-180px] md:w-[620px]
+      md:-right-45 md:w-155
 
-      lg:right-[-170px] lg:w-[850px]"
+      lg:-right-42.5 lg:w-212.5"
               />
 
               {/* Momo Image */}
@@ -184,13 +184,13 @@ const Home = () => {
       z-10
       object-contain
 
-      w-[340px]
+      w-85
 
-      sm:w-[340px]
+      sm:w-85
 
-      md:w-[480px]
+      md:w-120
 
-      lg:w-[700px]"
+      lg:w-175"
               />
             </div>
           </div>
@@ -339,14 +339,14 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="relative min-h-[520px] overflow-hidden bg-[#0F7F6C]">
+      <section className="relative min-h-130 overflow-hidden bg-[#0F7F6C]">
         <img
           src={waiter}
           alt="Fresh momo kitchen"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-slate-950/55" />
-        <div className="relative mx-auto flex min-h-[520px] max-w-7xl flex-col items-center justify-center px-6 text-center text-white lg:px-8">
+        <div className="relative mx-auto flex min-h-130 max-w-7xl flex-col items-center justify-center px-6 text-center text-white lg:px-8">
           <h2 className="text-4xl font-bold">Process behind the making</h2>
           <p className="mt-4 text-lg text-white/85">
             See how only chefs cooks only the best momos
@@ -409,7 +409,7 @@ const Home = () => {
               <img
                 src={women}
                 alt="Happy customer"
-                className="h-[520px] w-[420px] object-cover object-top"
+                className="h-130 w-105 object-cover object-top"
               />
             </div>
           </div>
