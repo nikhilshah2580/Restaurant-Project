@@ -6,6 +6,7 @@ import { GiChefToque, GiPartyPopper } from "react-icons/gi";
 import team1 from "../assets/team1.png";
 import waiter from "../assets/waiter.jpg";
 import Footer from "../components/Footer";
+import aboutwomen from "../assets/aboutwomen.png";
 
 const qrImage =
   "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://dummyjson.com/recipes";
@@ -56,7 +57,7 @@ const Service = () => {
           <div className="absolute left-8 top-28 hidden h-52 w-52 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] bg-size-[18px_18px] md:block" />
           <div className="absolute bottom-0 right-0 hidden h-52 w-52 bg-[radial-gradient(#dce4eb_2px,transparent_2px)] bg-size-[18px_18px] md:block" />
           <img
-            src={team1}
+            src={aboutwomen}
             alt="Chef showing approval"
             className="relative z-10 h-85 w-57.5 rounded-full object-cover object-top sm:h-107.5 sm:w-75 lg:translate-x-10"
           />

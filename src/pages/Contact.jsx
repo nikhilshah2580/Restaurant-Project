@@ -97,48 +97,50 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="bg-slate-50">
-        <div className="grid lg:min-h-190 lg:grid-cols-[1fr_1.25fr]">
-          <div className="relative h-95 overflow-hidden bg-[#edf2f2] sm:h-120 lg:h-auto lg:min-h-full">
+      <section className="bg-slate-50 py-16">
+        <div className="mx-auto max-w-8xl px-0 lg:px-1">
+          <div className="relative min-h-[420px] w-full overflow-hidden bg-[#edf2f2] sm:min-h-[500px] lg:h-auto lg:min-h-full">
             <iframe
               title="New Baneshwor Kathmandu map"
               src="https://www.google.com/maps?q=Kathmandu New Baneshwor &output=embed"
               className="absolute inset-0 h-full w-full border-0"
               loading="lazy"
             />
-            <div className="absolute left-4 top-4 flex overflow-hidden rounded-md border border-slate-200 bg-white text-sm font-semibold shadow-sm sm:left-8 sm:top-8">
-              <button className="bg-white px-4 py-3 text-slate-900">Map</button>
-              <button className="border-l border-slate-200 px-4 py-3 text-slate-400">
+            <div className="absolute left-3 top-3 flex overflow-hidden rounded-md border border-slate-200 bg-white text-xs font-semibold shadow-sm sm:left-8 sm:top-8 sm:text-sm">
+              <button className="bg-white px-3 py-2 text-slate-900 sm:px-4 sm:py-3">
+                Map
+              </button>
+              <button className="border-l border-slate-200 px-3 py-2 text-slate-400 sm:px-4 sm:py-3">
                 Satellite
               </button>
             </div>
-            <div className="absolute inset-x-4 bottom-5 sm:inset-x-auto sm:left-8 sm:max-w-md">
-              <div className="rounded-lg bg-white/95 px-5 py-5 text-center shadow-[0_18px_40px_rgba(15,23,42,0.16)] backdrop-blur sm:px-8 sm:py-6">
-                <h3 className="text-base font-extrabold text-slate-800 sm:text-xl">
+            <div className="absolute inset-x-3 bottom-4 sm:inset-x-auto sm:left-8 sm:max-w-md">
+              <div className="rounded-lg bg-white/95 px-4 py-4 text-center shadow-[0_18px_40px_rgba(15,23,42,0.16)] backdrop-blur sm:px-8 sm:py-6">
+                <h3 className="text-sm font-extrabold leading-5 text-slate-800 sm:text-xl sm:leading-7">
                   New Baneshwor, Kathmandu, Bagmati, Nepal
                 </h3>
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=New+Baneshwor+Kathmandu"
+                  href="https://www.openstreetmap.org/?mlat=27.6930&mlon=85.3314#map=16/27.6930/85.3314"
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 font-bold text-blue-500"
+                  className="mt-2 inline-block text-sm font-bold text-[#0F7F6C]"
                 >
                   Get Direction <FaDirections size={14} />
                 </a>
               </div>
             </div>
-            <FaMapMarkerAlt className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full text-5xl text-red-600 drop-shadow-lg" />
-            <div className="absolute right-4 top-20 grid gap-3 sm:right-8 sm:top-auto sm:bottom-8">
+            <FaMapMarkerAlt className="pointer-events-none absolute left-1/2 top-[48%] -translate-x-1/2 -translate-y-full text-4xl text-red-600 drop-shadow-lg sm:top-1/2 sm:text-5xl" />
+            <div className="absolute right-3 top-16 grid gap-2 sm:right-8 sm:top-auto sm:bottom-8 sm:gap-3">
               <button
                 type="button"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-700 shadow-md"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-700 shadow-md sm:h-12 sm:w-12"
                 aria-label="Zoom in"
               >
                 <FaPlus />
               </button>
               <button
                 type="button"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-700 shadow-md"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-700 shadow-md sm:h-12 sm:w-12"
                 aria-label="Zoom out"
               >
                 <FaMinus />
