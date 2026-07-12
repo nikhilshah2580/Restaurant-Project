@@ -3,10 +3,9 @@ import { Link } from "react-router";
 import axios from "axios";
 import { FaPlay } from "react-icons/fa";
 import { GiChefToque, GiPartyPopper } from "react-icons/gi";
-import team1 from "../assets/team1.png";
 import waiter from "../assets/waiter.jpg";
 import Footer from "../components/Footer";
-import aboutwomen from "../assets/aboutwomen.png";
+import aboutwomen from "../assets/aboutwomen.png"; 
 
 const qrImage =
   "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://dummyjson.com/recipes";

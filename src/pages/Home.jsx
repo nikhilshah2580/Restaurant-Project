@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import momo from "../assets/momo.png";
 import man from "../assets/man.png";
@@ -41,6 +41,7 @@ const services = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
   const { addToCart } = useCart();
   const [popularRecipes, setPopularRecipes] = useState([]);
   const [loadingRecipes, setLoadingRecipes] = useState(true);
@@ -147,7 +148,7 @@ const Home = () => {
                 of momo available for you
               </p>
 
-              <button className="mt-10 rounded-full bg-[#0D7A6D] px-10 py-4 text-lg font-medium text-white transition hover:bg-[#0A6459]">
+              <button onClick={() => navigate('/menu')} className="mt-10 rounded-full bg-[#0D7A6D] px-10 py-4 text-lg font-medium text-white transition hover:bg-[#0A6459] hover:shadow-lg hover:shadow-teal-500/30">
                 Explore Food Menu →
               </button>
             </div>
@@ -222,7 +223,7 @@ const Home = () => {
               arcu dignissim. Amet neque enim etiam purus id. Tortor sit orci
               blandit cursus turpis.
             </p>
-            <button className="mt-10 rounded-full bg-[#0F7F6C] px-8 py-4 text-white transition hover:bg-[#0d6c56]">
+            <button onClick={() => navigate('/about')} className="mt-10 rounded-full bg-[#0F7F6C] px-8 py-4 text-white transition hover:bg-[#0d6c56] hover:shadow-lg hover:shadow-teal-500/30">
               Explore Our Story {"->"}
             </button>
           </div>
@@ -324,7 +325,7 @@ const Home = () => {
         </div>
 
         <div className="mt-16 flex justify-center">
-          <button className="rounded-full bg-[#0F7F6C] px-8 py-4 text-white hover:bg-[#0d6c56]">
+          <button onClick={() => navigate('/menu')} className="rounded-full bg-[#0F7F6C] px-8 py-4 text-white transition hover:bg-[#0d6c56] hover:shadow-lg hover:shadow-teal-500/30">
             Explore Our Menu {"->"}
           </button>
         </div>
@@ -375,7 +376,7 @@ const Home = () => {
           ))}
         </div>
         <div className="mt-14 flex justify-center">
-          <button className="rounded-full bg-[#0F7F6C] px-8 py-4 text-white hover:bg-[#0d6c56]">
+          <button onClick={() => navigate('/service')} className="rounded-full bg-[#0F7F6C] px-8 py-4 text-white transition hover:bg-[#0d6c56] hover:shadow-lg hover:shadow-teal-500/30">
             Explore Our Services {"->"}
           </button>
         </div>
